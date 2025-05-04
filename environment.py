@@ -344,10 +344,9 @@ class Environment:
         next_state = state_tensor.clone()
         type, row, col =  action[0], action[1], action[2]
         board, h_walls, v_walls = next_state[0], next_state[1], next_state[2]
-        
 
         if type == 0:       # piece
-            player_pos = torch.where(board == player)
+            player_pos = torch.where(board > 0 if player == 1 else board < 0)
             player_row = player_pos[0][0]
             player_col = player_pos[1][0]
             board[row, col] = board[player_row, player_col]

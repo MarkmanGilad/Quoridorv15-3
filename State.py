@@ -18,8 +18,8 @@ class State:
         self.horizontal_walls = np.zeros([9,9])
         self.vertical_walls = np.zeros([9,9])
         self.current_player = 1
-        self.white_wall_counter = 10
-        self.black_wall_counter = 10
+        self.white_wall_counter = 8
+        self.black_wall_counter = 8
         self.Graphics = Graphics
     
     def reset(self):
@@ -29,16 +29,16 @@ class State:
         player_pos = np.where(self.board == 1)
         player_row = int(player_pos[0][0])
         player_col = int(player_pos[1][0])
-        player1_encode = player_row
+        player1_encode = player_row + 1
         opponent_pos = np.where(self.board == -1)
         opponent_row = int(opponent_pos[0][0])
         opponent_col = int(opponent_pos[1][0])
-        opponent_encode = 8 - opponent_row
+        opponent_encode = -(opponent_row + 1)
 
         board = torch.zeros(self.board.shape, dtype=torch.float32)
         board[player_row, player_col] = player1_encode
         board[opponent_row, opponent_col] = opponent_encode
-        
+
         # board = torch.tensor(self.board, dtype=torch.float32)
         h_walls = torch.tensor(self.horizontal_walls, dtype=torch.float32) / 2
         v_walls = torch.tensor(self.vertical_walls, dtype=torch.float32) / 2
