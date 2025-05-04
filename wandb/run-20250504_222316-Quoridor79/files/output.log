@@ -390,4 +390,6 @@ sum score: -1
 79: epoch: 353 steps: 123 win: 1 loss: 0.5326379537582397
 79: epoch: 354 steps: 200 win: 0 loss: 0.8198676109313965
 79: epoch: 355 steps: 65 win: 1 loss: 0.6960777044296265
-35
+79: epoch: 356 steps: 200 win: 0 loss: 0.6749985814094543
+79: epoch: 357 steps: 200 win: 0 loss: 0.8315689563751221
+7
