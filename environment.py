@@ -280,7 +280,8 @@ class Environment:
             for j in range (8):
                 wall1_row +=1
                 if self.is_valid_vertical_wall((wall1_row,wall1_col), state):
-                    arr.append((2,wall1_row, wall1_col))
+                    if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
+                        arr.append((2,wall1_row, wall1_col))
    
         return arr
 
@@ -298,7 +299,8 @@ class Environment:
             for j in range (8):
                 wall1_col+=1
                 if self.is_valid_horizontal_wall((wall1_row,wall1_col), state):
-                    arr.append((1,wall1_row, wall1_col))
+                    if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
+                        arr.append((1,wall1_row, wall1_col))
    
         return arr    
 
@@ -401,3 +403,22 @@ class Environment:
        
     def is_done (self, state = None):
         return self.win(state) != 0
+    
+    def relevant_wall (self, state, w_row, w_col, player=1):  
+        ''' 
+        only for player 1
+        opponent is at the bottom and need to go up
+        relevant wall is a wall distance of 3 and betwwen the player and the target (not behind)
+        '''
+        
+        if player == -1:
+            return True
+        offset = 3
+        opponent_pos = np.where(state.board == -1)
+        row = int(opponent_pos[0][0])
+        col = int(opponent_pos[1][0])
+
+        res = 0 < (row - w_row) <= offset and abs(w_col-col) <= offset
+        return res
+
+        

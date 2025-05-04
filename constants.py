@@ -12,7 +12,7 @@ H_WIDTH, H_HEIGHT = 300, 100
 M_WIDTH, M_HEIGHT = 300, 300
 epsilon_start = 1
 epsilon_final = 0.01
-epsiln_decay = 25000
+epsiln_decay = 10
 
 #RGB
 SPACE = (124,61,46)

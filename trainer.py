@@ -14,8 +14,8 @@ import wandb
 def main (chkpt):
     
     epochs = 1000000
-    C = 10
-    learning_rate = 0.01
+    C = 5
+    learning_rate = 1e-4
     batch_size = 32
     
     pygame.init()
@@ -32,6 +32,24 @@ def main (chkpt):
     path = f"Quoridor{chkpt}.pth"
     player2 = RandomAgent(player=-1, env=env)
     loss = 0
+    
+    #region   ############# wandb init ###########################
+    wandb.init(
+    # set the wandb project where this run will be logged
+        project="Quoridor",
+        id=f'Quoridor{chkpt}',
+        name=f"Quoridor{chkpt}",
+        config={
+        "learning_rate": learning_rate,
+        "architecture": str(player1.DQN),
+        "batch_size":batch_size,
+        "C": C
+        }
+    )
+    #endregion
+    
+    
+    
     for epoch in range(epochs):
         env.Reset()
         graphics.reset()
@@ -94,11 +112,17 @@ def main (chkpt):
 
         ########### log and print ##########
         score += env.win()
-        if (epoch+1) % 20 == 0:
-            print(f'sum score: {score} / {epoch} ')
+        wandb.log({
+            "loos": loss,
+            "steps": step
+        })
+
+        if epoch % 10 == 0:
+            print(f'sum score: {score}')
+            wandb.log({"score": score})
             score =0
 
-        print(f"{chkpt}: steps: {step} win: {env.win()} loss: {loss}")
+        print(f"{chkpt}: epoch: {epoch} steps: {step} win: {env.win()} loss: {loss}")
 
     player1.save_param(path)
     

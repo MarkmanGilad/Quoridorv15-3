@@ -1,0 +1,24 @@
+sum score: -1
+76: epoch: 0 steps: 152 win: -1 loss: 0
+76: epoch: 1 steps: 62 win: -1 loss: 0
+76: epoch: 2 steps: 191 win: -1 loss: 0
+76: epoch: 3 steps: 66 win: 1 loss: 0
+76: epoch: 4 steps: 200 win: 0 loss: 1.0185813903808594
+76: epoch: 5 steps: 76 win: -1 loss: 6.87925910949707
+76: epoch: 6 steps: 200 win: 0 loss: 0.6600914001464844
+76: epoch: 7 steps: 118 win: 1 loss: 3.3727481365203857
+76: epoch: 8 steps: 89 win: 1 loss: 11.911991119384766
+76: epoch: 9 steps: 200 win: 0 loss: 2.573052406311035
+76: epoch: 10 steps: 189 win: -1 loss: 399.99822998046875
+76: epoch: 11 steps: 200 win: 1 loss: 351.90478515625
+76: epoch: 12 steps: 42 win: 1 loss: 290.5599670410156
+76: epoch: 13 steps: 168 win: -1 loss: 1013.8896484375
+76: epoch: 14 steps: 64 win: -1 loss: 140.25216674804688
+76: epoch: 15 steps: 197 win: -1 loss: 1670.818359375
+76: epoch: 16 steps: 86 win: -1 loss: 110.30921936035156
+76: epoch: 17 steps: 169 win: -1 loss: 119.35601043701172
+76: epoch: 18 steps: 200 win: 0 loss: 37.297401428222656
+76: epoch: 19 steps: 44 win: 1 loss: 61.110145568847656
+sum score: 1
+76: epoch: 20 steps: 107 win: 1 loss: 194.0050506591797
+23

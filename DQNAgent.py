@@ -76,10 +76,6 @@ class DQN_Agent:
         Q_values = torch.stack(values_lst)
         return action_lst, Q_values
 
-
-
-
-
     def epsilon_greedy(self,epoch, start = epsilon_start, final=epsilon_final, decay=epsiln_decay):
         # res = final + (start - final) * math.exp(-1 * epoch/decay)
         res = max(final, start - (start - final) * epoch / decay)
