@@ -7,9 +7,13 @@ import torch
 class Environment:
      
     def __init__(self, state:State ) -> None:
-       self.state = state
-    #    self.vertical_walls = state.vertical_walls
-   
+        self.state = state
+        #    self.vertical_walls = state.vertical_walls
+        self.opponent_coe_reward = 0.2
+        self.step_reward = -0.1
+        self.forward_reward = 1
+        self.done_reward = 10
+
     def move_piece(self,pos):
         """
         Move a piece from one position to another.
@@ -329,7 +333,7 @@ class Environment:
         action1 = self.validmovelistpiece(state)
         action2 = self.valid_move_list_hor_wall()
         action3 = self.valid_move_list_vert_wall()
-        actions = action2 + action3 + action1
+        actions = action1 + action2 + action3
         return actions
 
     def next_state(self, state_tensor, action ,player = 1):
@@ -366,21 +370,21 @@ class Environment:
         return next_states
 
     def reward (self, state: State, next_state, player):
-        reward = -0.1
+        reward = self.step_reward
         player1_pos = np.where(state.board==1)
         player1_next_pos = np.where(next_state.board==1)
         opponent_pos = np.where(state.board==-1)
         opponent_next_pos = np.where(next_state.board==-1)
 
-        player_advanced = player1_next_pos[0]-player1_pos[0]
-        opponenet_advanced = opponent_pos[0]- opponent_next_pos[0]
-        reward += player_advanced - opponenet_advanced
+        player_advanced = (player1_next_pos[0]-player1_pos[0]) * self.forward_reward
+        opponenet_advanced = (opponent_pos[0]- opponent_next_pos[0]) * self.forward_reward
+        reward += player_advanced - self.opponent_coe_reward * opponenet_advanced
 
         win = self.win(next_state)
         if  win == 1:
-            reward += 10
+            reward += self.done_reward
         elif win == -1:
-            reward -= 10
+            reward -= self.done_reward
         
         return reward
         

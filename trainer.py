@@ -31,11 +31,12 @@ def main (chkpt):
     # scheduler = torch.optim.lr_scheduler.StepLR(optim,10000, gamma=0.9)
     path = f"Quoridor{chkpt}.pth"
     player2 = RandomAgent(player=-1, env=env)
-    
+    loss = 0
     for epoch in range(epochs):
         env.Reset()
         graphics.reset()
         step = 0
+        score = 0
         end_of_game = False
         state = env.state.copy()
         while not end_of_game and step < 200:
@@ -58,22 +59,24 @@ def main (chkpt):
             end_of_game = env.is_done()
             if end_of_game:
                 buffer.push(state, action, reward, after_state, True)
-                break
-            
-            after_action = player2.getAction(state=after_state)
-            env.move(after_action)
-            next_state = env.state.copy()
-            reward += env.reward(state, next_state, player=player1.player)
-            end_of_game = env.is_done()
-            buffer.push(state, action, reward, next_state, end_of_game)
+            else:
+                after_action = player2.getAction(state=after_state)
+                env.move(after_action)
+                next_state = env.state.copy()
+                reward = env.reward(state, next_state, player=player1.player)
+                end_of_game = env.is_done()
+                buffer.push(state, action, reward, next_state, end_of_game)
+
             state = next_state
-            
+           
             graphics.draw_vertical_walls(env.state,action)
             graphics.draw_horizontal_walls(env.state,action)
+            graphics.draw_vertical_walls(env.state,after_action)
+            graphics.draw_horizontal_walls(env.state,after_action)
             graphics.draw(env.state)
             pygame.display.update()
 
-            if len(buffer) < 100:
+            if len(buffer) < 500:
                 continue
             
             ################ Train NN #######################
@@ -89,7 +92,13 @@ def main (chkpt):
                 player1_hat.DQN.load_state_dict(player1.DQN.state_dict())
             # scheduler.step()
 
-        print(f"{chkpt}: steps: {step} win: {env.win()}")
+        ########### log and print ##########
+        score += env.win()
+        if (epoch+1) % 20 == 0:
+            print(f'sum score: {score} / {epoch} ')
+            score =0
+
+        print(f"{chkpt}: steps: {step} win: {env.win()} loss: {loss}")
 
     player1.save_param(path)
     
