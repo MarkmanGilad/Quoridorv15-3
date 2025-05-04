@@ -36,9 +36,9 @@ def main (chkpt):
         env.Reset()
         graphics.reset()
         step = 0
-        run = True
+        end_of_game = False
         state = env.state.copy()
-        while run and step < 200:
+        while not end_of_game and step < 200:
             step += 1
             print(step, end="\r")
 
@@ -63,7 +63,7 @@ def main (chkpt):
             after_action = player2.getAction(state=after_state)
             env.move(after_action)
             next_state = env.state.copy()
-            reward += env.reward(state, after_state, player=player1.player)
+            reward += env.reward(state, next_state, player=player1.player)
             end_of_game = env.is_done()
             buffer.push(state, action, reward, next_state, end_of_game)
             state = next_state
@@ -81,7 +81,7 @@ def main (chkpt):
             Q_values = player1.get_Q_Values(states, actions)
             _, Q_hat_Values = player1.get_actions_values(next_states, dones)
             
-            loss = player1.DQN.loss(Q_values, torch.tensor(rewards, dtype=torch.float32), Q_hat_Values, torch.tensor(dones, dtype=torch.int64))
+            loss = player1.DQN.loss(Q_values, rewards, Q_hat_Values, dones)
             loss.backward()
             optim.step()
             optim.zero_grad()

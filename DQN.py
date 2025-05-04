@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import copy
+import numpy as np
 
 # Parameters
 input_size = 246 # state: board = 9*9*3 = 64 + action (2) 
@@ -43,11 +44,13 @@ class DQN (nn.Module):
         x = self.output(x)
         return x          
     
-    def loss (self, Q_value, rewards, Q_next_Values, Dones ):
-        rewards = rewards.to(device=self.device).unsqueeze(1)
-        Q_next_Values = Q_next_Values.to(device=self.device)
-        Dones = Dones.to(device=self.device).unsqueeze(1)
-        Q_new =  rewards + gamma * Q_next_Values * (1- Dones)
+    def loss (self, Q_value, rewards, Q_next_Values, dones ):
+        rewards_tensor = torch.tensor(np.array(rewards), dtype=torch.float32).to(device=self.device)
+        dones_tensor = torch.tensor(np.array(dones), dtype=torch.int64).to(device=self.device).unsqueeze(1)
+             
+        
+        
+        Q_new =  rewards_tensor + gamma * Q_next_Values * (1- dones_tensor)
         return self.MSELoss(Q_value, Q_new)
     
     def load_params(self, path):

@@ -376,6 +376,12 @@ class Environment:
         opponenet_advanced = opponent_pos[0]- opponent_next_pos[0]
         reward += player_advanced - opponenet_advanced
 
+        win = self.win(next_state)
+        if  win == 1:
+            reward += 10
+        elif win == -1:
+            reward -= 10
+        
         return reward
         
     
