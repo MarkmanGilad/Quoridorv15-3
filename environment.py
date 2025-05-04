@@ -1,7 +1,7 @@
 import numpy as np
 from State import State
 import torch
-
+import time
 
 
 class Environment:
@@ -336,6 +336,8 @@ class Environment:
         action2 = self.valid_move_list_hor_wall()
         action3 = self.valid_move_list_vert_wall()
         actions = action1 + action2 + action3
+        if len(actions) == 0:
+            torch.save(state, f"Data/actions_{time.strftime('%Y%m%d_%H%M%S')}.pth")
         return actions
 
     def next_state(self, state_tensor, action ,player = 1):
@@ -411,7 +413,7 @@ class Environment:
         relevant wall is a wall distance of 3 and betwwen the player and the target (not behind)
         '''
         
-        if player == -1:
+        if player == -1 or player == 1:
             return True
         offset = 3
         opponent_pos = np.where(state.board == -1)

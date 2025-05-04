@@ -1,0 +1,9 @@
+{"time":"2025-05-04T23:42:42.1356068+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-05-04T23:42:42.1356068+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250504_234242-Quoridor82\\logs\\debug-core.log"}
+{"time":"2025-05-04T23:42:42.2438706+03:00","level":"INFO","msg":"created new stream","id":"Quoridor82"}
+{"time":"2025-05-04T23:42:42.2438706+03:00","level":"INFO","msg":"stream: started","id":"Quoridor82"}
+{"time":"2025-05-04T23:42:42.2438706+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor82"}
+{"time":"2025-05-04T23:42:42.2438706+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor82"}
+{"time":"2025-05-04T23:42:42.2438706+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Quoridor82"}
+{"time":"2025-05-04T23:42:42.7394793+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-04T23:42:52.7402715+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}

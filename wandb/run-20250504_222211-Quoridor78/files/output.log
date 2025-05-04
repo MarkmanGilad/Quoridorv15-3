@@ -26,4 +26,155 @@ sum score: 0
 78: epoch: 22 steps: 200 win: 0 loss: 0.5019800066947937
 78: epoch: 23 steps: 200 win: 0 loss: 0.39251944422721863
 78: epoch: 24 steps: 191 win: -1 loss: 3.5481011867523193
-78: 
+78: epoch: 25 steps: 200 win: 0 loss: 0.5128772258758545
+78: epoch: 26 steps: 200 win: 0 loss: 0.5784426927566528
+78: epoch: 27 steps: 38 win: -1 loss: 0.5428524613380432
+78: epoch: 28 steps: 200 win: 0 loss: 0.3476644456386566
+78: epoch: 29 steps: 66 win: 1 loss: 0.35532331466674805
+sum score: -1
+78: epoch: 30 steps: 56 win: -1 loss: 0.4712505340576172
+78: epoch: 31 steps: 184 win: -1 loss: 0.3843703866004944
+78: epoch: 32 steps: 107 win: -1 loss: 0.5405279397964478
+78: epoch: 33 steps: 60 win: 1 loss: 0.4100620448589325
+78: epoch: 34 steps: 168 win: 1 loss: 4.6170783042907715
+78: epoch: 35 steps: 136 win: -1 loss: 3.2297093868255615
+78: epoch: 36 steps: 70 win: -1 loss: 0.2916771173477173
+78: epoch: 37 steps: 38 win: -1 loss: 0.44644486904144287
+78: epoch: 38 steps: 42 win: -1 loss: 0.44503316283226013
+78: epoch: 39 steps: 165 win: 1 loss: 2.5298099517822266
+sum score: -1
+78: epoch: 40 steps: 71 win: -1 loss: 0.3347349166870117
+78: epoch: 41 steps: 133 win: 1 loss: 0.49804210662841797
+78: epoch: 42 steps: 200 win: 0 loss: 0.4975045621395111
+78: epoch: 43 steps: 87 win: -1 loss: 0.4387567341327667
+78: epoch: 44 steps: 64 win: -1 loss: 0.5430527329444885
+78: epoch: 45 steps: 200 win: 0 loss: 0.3377420902252197
+78: epoch: 46 steps: 200 win: 0 loss: 0.34179237484931946
+78: epoch: 47 steps: 60 win: -1 loss: 0.17974278330802917
+78: epoch: 48 steps: 97 win: 1 loss: 0.2685776352882385
+78: epoch: 49 steps: 25 win: 1 loss: 3.1917426586151123
+sum score: 0
+78: epoch: 50 steps: 200 win: 0 loss: 0.39721664786338806
+78: epoch: 51 steps: 200 win: 0 loss: 0.3081967234611511
+78: epoch: 52 steps: 63 win: 1 loss: 3.604785442352295
+78: epoch: 53 steps: 200 win: 0 loss: 0.41307532787323
+78: epoch: 54 steps: 102 win: 1 loss: 0.32878416776657104
+78: epoch: 55 steps: 82 win: 1 loss: 0.3299761414527893
+78: epoch: 56 steps: 53 win: -1 loss: 0.4208214282989502
+78: epoch: 57 steps: 138 win: -1 loss: 0.46936166286468506
+78: epoch: 58 steps: 121 win: -1 loss: 0.28255993127822876
+78: epoch: 59 steps: 200 win: 0 loss: 0.2854412794113159
+sum score: 1
+78: epoch: 60 steps: 146 win: 1 loss: 0.6519569754600525
+78: epoch: 61 steps: 140 win: -1 loss: 0.28426679968833923
+78: epoch: 62 steps: 90 win: -1 loss: 0.5713984966278076
+78: epoch: 63 steps: 67 win: 1 loss: 0.5403837561607361
+78: epoch: 64 steps: 145 win: 1 loss: 2.655261993408203
+78: epoch: 65 steps: 69 win: 1 loss: 0.481026291847229
+78: epoch: 66 steps: 55 win: 1 loss: 0.647987425327301
+78: epoch: 67 steps: 176 win: 1 loss: 0.33524420857429504
+78: epoch: 68 steps: 38 win: -1 loss: 0.5103231072425842
+78: epoch: 69 steps: 81 win: -1 loss: 0.42321503162384033
+sum score: -1
+78: epoch: 70 steps: 100 win: -1 loss: 2.0498242378234863
+78: epoch: 71 steps: 30 win: -1 loss: 0.4061499536037445
+78: epoch: 72 steps: 200 win: 0 loss: 0.3346311151981354
+78: epoch: 73 steps: 200 win: 0 loss: 0.5734846591949463
+78: epoch: 74 steps: 176 win: 1 loss: 0.5103011727333069
+78: epoch: 75 steps: 200 win: 0 loss: 0.3936406672000885
+78: epoch: 76 steps: 100 win: -1 loss: 5.766042709350586
+78: epoch: 77 steps: 200 win: 0 loss: 0.6380761861801147
+78: epoch: 78 steps: 200 win: 0 loss: 0.4727376103401184
+78: epoch: 79 steps: 182 win: 1 loss: 0.6807094812393188
+sum score: -1
+78: epoch: 80 steps: 90 win: -1 loss: 0.4355398416519165
+78: epoch: 81 steps: 105 win: -1 loss: 0.44232451915740967
+78: epoch: 82 steps: 126 win: 1 loss: 0.4204503297805786
+78: epoch: 83 steps: 130 win: 1 loss: 1.9847509860992432
+78: epoch: 84 steps: 55 win: 1 loss: 5.308194637298584
+78: epoch: 85 steps: 70 win: 1 loss: 0.3892618417739868
+78: epoch: 86 steps: 61 win: 1 loss: 0.45514875650405884
+78: epoch: 87 steps: 200 win: 0 loss: 1.6164172887802124
+78: epoch: 88 steps: 86 win: -1 loss: 0.38045474886894226
+78: epoch: 89 steps: 200 win: 0 loss: 0.7536664605140686
+sum score: -1
+78: epoch: 90 steps: 112 win: -1 loss: 0.4488549828529358
+78: epoch: 91 steps: 117 win: 1 loss: 0.31901413202285767
+78: epoch: 92 steps: 42 win: -1 loss: 0.39860671758651733
+78: epoch: 93 steps: 118 win: 1 loss: 1.7439042329788208
+78: epoch: 94 steps: 93 win: -1 loss: 0.28757399320602417
+78: epoch: 95 steps: 133 win: 1 loss: 0.4607508182525635
+78: epoch: 96 steps: 23 win: 1 loss: 6.5325140953063965
+78: epoch: 97 steps: 200 win: 0 loss: 0.33083832263946533
+78: epoch: 98 steps: 200 win: 0 loss: 0.23908421397209167
+78: epoch: 99 steps: 200 win: 0 loss: 0.518322229385376
+sum score: -1
+78: epoch: 100 steps: 97 win: -1 loss: 0.6526581645011902
+78: epoch: 101 steps: 200 win: 0 loss: 0.44483616948127747
+78: epoch: 102 steps: 200 win: 0 loss: 3.864894390106201
+78: epoch: 103 steps: 157 win: -1 loss: 2.8224093914031982
+78: epoch: 104 steps: 170 win: -1 loss: 0.6022367477416992
+78: epoch: 105 steps: 55 win: -1 loss: 0.6530417203903198
+78: epoch: 106 steps: 189 win: 1 loss: 0.5286592245101929
+78: epoch: 107 steps: 200 win: 0 loss: 0.46763473749160767
+78: epoch: 108 steps: 159 win: -1 loss: 0.38798338174819946
+78: epoch: 109 steps: 130 win: -1 loss: 0.3814922273159027
+sum score: 0
+78: epoch: 110 steps: 200 win: 0 loss: 0.4623209834098816
+78: epoch: 111 steps: 200 win: 0 loss: 3.4042246341705322
+78: epoch: 112 steps: 105 win: 1 loss: 0.27236515283584595
+78: epoch: 113 steps: 200 win: 0 loss: 0.36129623651504517
+78: epoch: 114 steps: 200 win: 0 loss: 0.4807133674621582
+78: epoch: 115 steps: 20 win: -1 loss: 0.5237311124801636
+78: epoch: 116 steps: 180 win: -1 loss: 0.4886760711669922
+78: epoch: 117 steps: 60 win: -1 loss: 0.37212491035461426
+78: epoch: 118 steps: 109 win: 1 loss: 0.37183713912963867
+78: epoch: 119 steps: 182 win: 1 loss: 0.4990275502204895
+sum score: 1
+78: epoch: 120 steps: 165 win: 1 loss: 0.4422503709793091
+78: epoch: 121 steps: 58 win: -1 loss: 0.7617385983467102
+78: epoch: 122 steps: 200 win: 0 loss: 0.41777801513671875
+78: epoch: 123 steps: 62 win: -1 loss: 0.4796850085258484
+78: epoch: 124 steps: 196 win: -1 loss: 0.5532897710800171
+78: epoch: 125 steps: 200 win: 0 loss: 0.5436009764671326
+78: epoch: 126 steps: 200 win: 0 loss: 0.5477567911148071
+78: epoch: 127 steps: 93 win: -1 loss: 0.5345867872238159
+78: epoch: 128 steps: 200 win: 0 loss: 0.4928947985172272
+78: epoch: 129 steps: 135 win: 1 loss: 0.4331679940223694
+sum score: 0
+78: epoch: 130 steps: 200 win: 0 loss: 0.5532448887825012
+78: epoch: 131 steps: 33 win: -1 loss: 0.5175669193267822
+78: epoch: 132 steps: 150 win: 1 loss: 0.33803966641426086
+78: epoch: 133 steps: 71 win: -1 loss: 0.5548537969589233
+78: epoch: 134 steps: 171 win: 1 loss: 0.45546284317970276
+78: epoch: 135 steps: 38 win: -1 loss: 0.47979536652565
+78: epoch: 136 steps: 144 win: -1 loss: 0.3398944139480591
+78: epoch: 137 steps: 171 win: -1 loss: 0.43452972173690796
+78: epoch: 138 steps: 188 win: 1 loss: 0.5035755634307861
+78: epoch: 139 steps: 82 win: -1 loss: 0.4638238847255707
+sum score: 0
+78: epoch: 140 steps: 200 win: 0 loss: 0.4026539921760559
+78: epoch: 141 steps: 200 win: 0 loss: 0.6100366115570068
+78: epoch: 142 steps: 200 win: 0 loss: 0.7743297815322876
+78: epoch: 143 steps: 106 win: -1 loss: 0.5333665609359741
+78: epoch: 144 steps: 99 win: -1 loss: 0.5098525285720825
+78: epoch: 145 steps: 78 win: -1 loss: 0.45217961072921753
+78: epoch: 146 steps: 200 win: 0 loss: 0.35961583256721497
+78: epoch: 147 steps: 60 win: -1 loss: 0.596767246723175
+78: epoch: 148 steps: 39 win: -1 loss: 0.7506144046783447
+78: epoch: 149 steps: 126 win: 1 loss: 0.5333514213562012
+sum score: 1
+78: epoch: 150 steps: 70 win: 1 loss: 0.5735439658164978
+75
+Traceback (most recent call last):
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 137, in <module>
+    main (chkpt)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 81, in main
+    after_action = player2.getAction(state=after_state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\RandomAgent.py", line 17, in getAction
+    return random.choice(action1)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence

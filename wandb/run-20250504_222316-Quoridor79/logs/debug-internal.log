@@ -6,3 +6,4 @@
 {"time":"2025-05-04T22:23:16.1949025+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor79"}
 {"time":"2025-05-04T22:23:16.1949025+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor79"}
 {"time":"2025-05-04T22:23:16.6941008+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-04T22:23:26.6947066+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}

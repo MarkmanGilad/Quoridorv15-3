@@ -26,9 +26,22 @@ class State:
         self.__init__()
         
     def to_tensor (self):
-        board = torch.tensor(self.board, dtype=torch.float32)
-        h_walls = torch.tensor(self.horizontal_walls, dtype=torch.float32)
-        v_walls = torch.tensor(self.vertical_walls, dtype=torch.float32)
+        player_pos = np.where(self.board == 1)
+        player_row = int(player_pos[0][0])
+        player_col = int(player_pos[1][0])
+        player1_encode = player_row
+        opponent_pos = np.where(self.board == -1)
+        opponent_row = int(opponent_pos[0][0])
+        opponent_col = int(opponent_pos[1][0])
+        opponent_encode = 8 - opponent_row
+
+        board = torch.zeros(self.board.shape, dtype=torch.float32)
+        board[player_row, player_col] = player1_encode
+        board[opponent_row, opponent_col] = opponent_encode
+        
+        # board = torch.tensor(self.board, dtype=torch.float32)
+        h_walls = torch.tensor(self.horizontal_walls, dtype=torch.float32) / 2
+        v_walls = torch.tensor(self.vertical_walls, dtype=torch.float32) / 2
         state_tensor = torch.stack([board, h_walls, v_walls])
         return state_tensor
 

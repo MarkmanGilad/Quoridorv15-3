@@ -1,0 +1,18 @@
+sum score: 0
+83: epoch: 0 steps: 200 win: 0 loss: 0
+83: epoch: 1 steps: 132 win: -1 loss: 0
+83: epoch: 2 steps: 144 win: 1 loss: 0
+24
+Traceback (most recent call last):
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 137, in <module>
+    main (chkpt)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 102, in main
+    Q_values = player1.get_Q_Values(states, actions)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\DQNAgent.py", line 52, in get_Q_Values
+    next_state = self.env.next_state(state_tensor=state_tensor, action=action, player=self.player)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 351, in next_state
+    player_row = player_pos[0][0]
+                 ~~~~~~~~~~~~~^^^
+IndexError: index 0 is out of bounds for dimension 0 with size 0
