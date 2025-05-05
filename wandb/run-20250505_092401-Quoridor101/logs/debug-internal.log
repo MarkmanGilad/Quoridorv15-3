@@ -1,0 +1,17 @@
+{"time":"2025-05-05T09:24:01.9655525+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-05-05T09:24:01.9655525+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250505_092401-Quoridor101\\logs\\debug-core.log"}
+{"time":"2025-05-05T09:24:02.0731547+03:00","level":"INFO","msg":"created new stream","id":"Quoridor101"}
+{"time":"2025-05-05T09:24:02.0741786+03:00","level":"INFO","msg":"stream: started","id":"Quoridor101"}
+{"time":"2025-05-05T09:24:02.0741786+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:02.0741786+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:02.0741786+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:02.594375+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-05T09:24:12.5954563+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}
+{"time":"2025-05-05T09:24:16.75818+03:00","level":"INFO","msg":"stream: closing","id":"Quoridor101"}
+{"time":"2025-05-05T09:24:16.7587395+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-05T09:24:16.7592768+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-05T09:24:18.2954453+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-05T09:24:18.9573549+03:00","level":"INFO","msg":"handler: closed","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:18.9573549+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:18.9573549+03:00","level":"INFO","msg":"sender: closed","stream_id":"Quoridor101"}
+{"time":"2025-05-05T09:24:18.9573549+03:00","level":"INFO","msg":"stream: closed","id":"Quoridor101"}

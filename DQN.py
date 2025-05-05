@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import copy
 import numpy as np
+from constants import *
 
 # Parameters
 input_size = 246 # state: board = 9*9*3 = 64 + action (2) 
@@ -12,7 +13,7 @@ gamma = 0.99
 
 
 class DQN (nn.Module):
-    def __init__(self, input_channels = 3, row = 9, col = 9, device = None) -> None:
+    def __init__(self, input_channels = 3, row = ROWS, col = COLS, device = None) -> None:
         super().__init__()
         if device is None:
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

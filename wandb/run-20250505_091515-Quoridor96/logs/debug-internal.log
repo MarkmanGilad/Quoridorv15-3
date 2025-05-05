@@ -1,0 +1,10 @@
+{"time":"2025-05-05T09:15:15.1268765+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-05-05T09:15:15.1268765+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250505_091515-Quoridor96\\logs\\debug-core.log"}
+{"time":"2025-05-05T09:15:15.2337749+03:00","level":"INFO","msg":"created new stream","id":"Quoridor96"}
+{"time":"2025-05-05T09:15:15.2344101+03:00","level":"INFO","msg":"stream: started","id":"Quoridor96"}
+{"time":"2025-05-05T09:15:15.2344101+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Quoridor96"}
+{"time":"2025-05-05T09:15:15.2344101+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor96"}
+{"time":"2025-05-05T09:15:15.2344101+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor96"}
+{"time":"2025-05-05T09:15:15.7049366+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-05T09:15:15.745833+03:00","level":"ERROR","msg":"error writing metadata file: open C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250505_091515-Quoridor96\\files\\wandb-metadata.json: The requested operation cannot be performed on a file with a user-mapped section open."}
+{"time":"2025-05-05T09:15:25.7052497+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}

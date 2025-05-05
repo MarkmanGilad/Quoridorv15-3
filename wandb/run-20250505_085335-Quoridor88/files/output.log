@@ -1,0 +1,4 @@
+sum score: -1
+88: epoch: 0 steps: 72 win: -1 loss: 0
+88: epoch: 1 steps: 85 win: 1 loss: 0
+4

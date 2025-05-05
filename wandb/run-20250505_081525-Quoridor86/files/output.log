@@ -1,0 +1,73 @@
+sum score: -1
+86: epoch: 0 steps: 114 win: -1 loss: 0
+86: epoch: 1 steps: 36 win: -1 loss: 0
+86: epoch: 2 steps: 40 win: -1 loss: 0
+86: epoch: 3 steps: 46 win: -1 loss: 0
+86: epoch: 4 steps: 79 win: 1 loss: 0
+86: epoch: 5 steps: 89 win: 1 loss: 0
+86: epoch: 6 steps: 175 win: 1 loss: 2.4305074214935303
+86: epoch: 7 steps: 119 win: -1 loss: 3.6110849380493164
+86: epoch: 8 steps: 82 win: 1 loss: 0.4395723342895508
+86: epoch: 9 steps: 163 win: -1 loss: 0.31417542695999146
+sum score: 1
+86: epoch: 10 steps: 57 win: 1 loss: 0.6524751782417297
+86: epoch: 11 steps: 88 win: -1 loss: 0.6853768825531006
+86: epoch: 12 steps: 115 win: 1 loss: 0.6613376140594482
+86: epoch: 13 steps: 96 win: 1 loss: 0.7000837326049805
+86: epoch: 14 steps: 200 win: 0 loss: 1.0389423370361328
+86: epoch: 15 steps: 44 win: 1 loss: 0.6318701505661011
+86: epoch: 16 steps: 171 win: 1 loss: 2.1644606590270996
+86: epoch: 17 steps: 112 win: -1 loss: 2.3913142681121826
+86: epoch: 18 steps: 156 win: 1 loss: 0.7725292444229126
+86: epoch: 19 steps: 82 win: -1 loss: 1.7636702060699463
+sum score: 0
+86: epoch: 20 steps: 200 win: 0 loss: 8.012532234191895
+86: epoch: 21 steps: 200 win: 0 loss: 0.7983459830284119
+86: epoch: 22 steps: 28 win: 1 loss: 7.283641815185547
+86: epoch: 23 steps: 124 win: -1 loss: 1.3316372632980347
+86: epoch: 24 steps: 113 win: -1 loss: 0.5314099788665771
+86: epoch: 25 steps: 64 win: -1 loss: 1.4742118120193481
+86: epoch: 26 steps: 110 win: 1 loss: 1.682533621788025
+86: epoch: 27 steps: 170 win: -1 loss: 0.4702727794647217
+86: epoch: 28 steps: 200 win: 0 loss: 0.4056921601295471
+86: epoch: 29 steps: 200 win: 0 loss: 0.31850892305374146
+sum score: 1
+86: epoch: 30 steps: 46 win: 1 loss: 8.107743263244629
+86: epoch: 31 steps: 87 win: 1 loss: 1.3508167266845703
+86: epoch: 32 steps: 168 win: 1 loss: 13.89918041229248
+86: epoch: 33 steps: 200 win: 0 loss: 0.3178136348724365
+86: epoch: 34 steps: 66 win: -1 loss: 0.31578320264816284
+86: epoch: 35 steps: 200 win: 0 loss: 0.3525175154209137
+86: epoch: 36 steps: 41 win: 1 loss: 30.078243255615234
+86: epoch: 37 steps: 200 win: 0 loss: 0.2522376775741577
+86: epoch: 38 steps: 144 win: -1 loss: 0.26128000020980835
+86: epoch: 39 steps: 74 win: 1 loss: 0.42753902077674866
+sum score: -1
+86: epoch: 40 steps: 84 win: -1 loss: 2.7252657413482666
+86: epoch: 41 steps: 200 win: 0 loss: 0.425607293844223
+86: epoch: 42 steps: 37 win: -1 loss: 0.39698559045791626
+86: epoch: 43 steps: 200 win: 0 loss: 0.4808039665222168
+153
+Traceback (most recent call last):
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 137, in <module>
+    main (chkpt)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 103, in main
+    _, Q_hat_Values = player1.get_actions_values(next_states, dones)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\DQNAgent.py", line 67, in get_actions_values
+    actions = self.env.get_legal_actions(states[i])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 340, in get_legal_actions
+    self.save(state)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 431, in save
+    torch.save(obj, f"Data/error_{str(type(obj))}_{time.strftime('%Y%m%d_%H%M%S')}.pth")
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\serialization.py", line 849, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\serialization.py", line 716, in _open_zipfile_writer
+    return container(name_or_buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\serialization.py", line 687, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: File Data/error_<class 'State.State'>_20250505_082223.pth cannot be opened.

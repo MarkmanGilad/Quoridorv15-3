@@ -1,0 +1,8 @@
+{"time":"2025-05-05T09:00:45.8505451+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-05-05T09:00:45.8505451+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250505_090045-Quoridor90\\logs\\debug-core.log"}
+{"time":"2025-05-05T09:00:45.9567171+03:00","level":"INFO","msg":"created new stream","id":"Quoridor90"}
+{"time":"2025-05-05T09:00:45.9567171+03:00","level":"INFO","msg":"stream: started","id":"Quoridor90"}
+{"time":"2025-05-05T09:00:45.9574207+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor90"}
+{"time":"2025-05-05T09:00:45.9574207+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Quoridor90"}
+{"time":"2025-05-05T09:00:45.9574207+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor90"}
+{"time":"2025-05-05T09:00:46.5306914+03:00","level":"INFO","msg":"Starting system monitor"}

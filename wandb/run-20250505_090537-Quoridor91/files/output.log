@@ -1,0 +1,7 @@
+sum score: 1
+91: epoch: 0 steps: 190 win: 1 loss: 0
+91: epoch: 1 steps: 83 win: 1 loss: 0
+91: epoch: 2 steps: 42 win: 1 loss: 0
+91: epoch: 3 steps: 38 win: -1 loss: 0
+91: epoch: 4 steps: 114 win: 1 loss: 0
+57

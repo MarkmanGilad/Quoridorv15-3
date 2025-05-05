@@ -1,0 +1,16 @@
+{
+  "os": "Windows-10-10.0.26100-SP0",
+  "python": "CPython 3.11.8",
+  "startedAt": "2025-05-05T06:15:15.125840Z",
+  "program": "c:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\trainer.py",
+  "codePath": "trainer.py",
+  "git": {
+    "remote": "https://github.com/MarkmanGilad/Quoridorv15-3.git",
+    "commit": "333adf83f2df61688a8c5830f9387ecc62763938"
+  },
+  "email": "gilad@markman.co.il",
+  "root": "C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3",
+  "host": "Gilad-Desktop",
+  "executable": "c:\\Users\\Gilad\\.virtualenvs\\Space_Invaders-WdsSLu6i\\Scripts\\python.exe",
+  "codePathLocal": "trainer.py"
+}

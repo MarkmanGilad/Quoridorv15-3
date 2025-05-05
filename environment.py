@@ -2,6 +2,7 @@ import numpy as np
 from State import State
 import torch
 import time
+from constants import *
 
 
 class Environment:
@@ -9,8 +10,8 @@ class Environment:
     def __init__(self, state:State ) -> None:
         self.state = state
         #    self.vertical_walls = state.vertical_walls
-        self.opponent_coe_reward = 0.2
-        self.step_reward = -0.1
+        self.opponent_coe_reward = 0.5
+        self.step_reward = -0.5
         self.forward_reward = 1
         self.done_reward = 10
 
@@ -45,7 +46,7 @@ class Environment:
         """
         from_row, from_col = self.get_player_row_col(self.state.current_player,self.state)
         to_row, to_col = pos
-        if  to_col > 8 or to_row > 8 or to_row < 0 or to_col < 0:
+        if  to_col > COLS-1 or to_row > ROWS-1 or to_row < 0 or to_col < 0:
             return False
         if (from_row - to_row) == 2 and from_row > 1 and self.state.horizontal_walls[to_row,to_col] != 2 and self.state.horizontal_walls[from_row -1,to_col] != 2 and self.state.board[from_row - 1, from_col] == self.state.current_player * -1 and from_col == to_col:
             return True
@@ -81,7 +82,7 @@ class Environment:
             return False
         if (from_row - to_row) == 1 and self.state.horizontal_walls[to_row,to_col] == 2:
             return False
-        if self.state.board[to_row, to_col]  == 0 and self.state.board[to_row, to_col]  is not self.state.board[from_row, from_col] and abs(from_row - to_row) < 2 and abs(from_col - to_col) < 2 and (from_row == to_row or from_col == to_col) and self.state.board[from_row, from_col] == self.state.current_player and  to_col <= 8 and to_row <= 8 :
+        if self.state.board[to_row, to_col]  == 0 and self.state.board[to_row, to_col]  is not self.state.board[from_row, from_col] and abs(from_row - to_row) < 2 and abs(from_col - to_col) < 2 and (from_row == to_row or from_col == to_col) and self.state.board[from_row, from_col] == self.state.current_player and  to_col <= COLS-1 and to_row <= ROWS-1:
             return True
         else:
             return False
@@ -101,12 +102,12 @@ class Environment:
         wall1_row, wall1_col = wall1
         wall2_row, wall2_col = wall1
         wall2_row += 1
-        if  wall2_row == -1 or wall1_col >= 8  or wall1_row >= 8 or\
+        if  wall2_row == -1 or wall1_col >= COLS-1  or wall1_row >= ROWS-1 or\
                 state.vertical_walls[wall1_row, wall1_col] == 2   or state.vertical_walls[wall2_row, wall2_col] == 2 or\
                         (state.current_player == -1 and state.white_wall_counter == 0) or (state.current_player == 1 and state.black_wall_counter == 0) or \
                         (state.horizontal_walls[wall1_row, wall1_col] == 2 and state.horizontal_walls[wall2_row-1, wall2_col+1] == 2):
             return False
-        visited=np.zeros([9,9])
+        visited=np.zeros([ROWS,COLS])
         visited.fill(0)
         state1 = state.copy()
         state1.vertical_walls[wall1_row, wall1_col] = 2
@@ -118,7 +119,7 @@ class Environment:
         self.find_path(0,state1,self.get_player_row_col(-1, state1),visited,path)
         path2 = []
         visited.fill(0)
-        self.find_path(8,state2,self.get_player_row_col(1, state2),visited,path2)
+        self.find_path(ROWS-1,state2,self.get_player_row_col(1, state2),visited,path2)
         if  path == [] or path2 == []:
             return False
         return True
@@ -142,12 +143,12 @@ class Environment:
         wall1_row, wall1_col = wall1
         wall2_row, wall2_col = wall1
         wall2_col += 1
-        if  wall2_col == -1 or wall1_col >= 8  or wall1_row >= 8 or state.horizontal_walls[wall1_row, wall1_col] == 2 \
+        if  wall2_col == -1 or wall1_col >= COLS-1  or wall1_row >= ROWS-1 or state.horizontal_walls[wall1_row, wall1_col] == 2 \
                 or state.horizontal_walls[wall2_row, wall2_col] == 2   or  (state.current_player == -1 and state.white_wall_counter == 0) \
                 or (state.current_player == 1 and state.black_wall_counter == 0) \
                 or (state.vertical_walls[wall1_row, wall1_col] == 2 and state.vertical_walls[wall2_row+1, wall2_col-1] == 2):
             return False
-        visited=np.zeros([9,9])
+        visited=np.zeros([ROWS,COLS])
         visited.fill(0)
         state1 = state.copy()
         state1.horizontal_walls[wall1_row, wall1_col] = 2
@@ -159,7 +160,7 @@ class Environment:
         self.find_path(0,state1,self.get_player_row_col(-1,state1),visited,path)
         path2 = []
         visited.fill(0)
-        self.find_path(8,state2,self.get_player_row_col(1,state2),visited,path2)
+        self.find_path(ROWS-1,state2,self.get_player_row_col(1,state2),visited,path2)
         if path == [] or path2 == []:
             return False
         return True
@@ -177,10 +178,10 @@ class Environment:
         self.state.current_player = self.state.current_player * -1
    
     def win_game(self):
-        for i in range (9):
+        for i in range (COLS):
             if self.state.board[0,i] == -1:
                 return "white"
-            if self.state.board[8,i] == 1:
+            if self.state.board[ROWS-1,i] == 1:
                 return "black"
         return None
 
@@ -216,10 +217,10 @@ class Environment:
         arr = []
         to_row = -1
         to_col = -1
-        for i in range(9):
+        for i in range(ROWS):
             to_row += 1
             to_col = -1
-            for j in range (9):
+            for j in range (COLS):
                 to_col += 1
                 if self.is_valid_move((to_row,to_col)):
                     arr.append((0,to_row,to_col))
@@ -247,7 +248,7 @@ class Environment:
                 continue
             if (from_row - to_row) == 1 and state.horizontal_walls[to_row,to_col] == 2:
                 continue
-            if to_col <= 8 and to_row <= 8 and to_row >= 0 and to_col >= 0:
+            if to_col <= COLS-1 and to_row <= ROWS-1 and to_row >= 0 and to_col >= 0:
                 arr.append((to_row,to_col))
         return arr
       
@@ -274,10 +275,10 @@ class Environment:
             return []
         wall1_row, wall1_col = -1,-1
         arr = []
-        for i in range (8):
+        for i in range (ROWS-1):
             wall1_col+=1
             wall1_row = -1
-            for j in range (8):
+            for j in range (COLS-1):
                 wall1_row +=1
                 if self.is_valid_vertical_wall((wall1_row,wall1_col), state):
                     if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
@@ -293,10 +294,10 @@ class Environment:
             return []
         wall1_row, wall1_col = -1,-1
         arr = []
-        for i in range (8):
+        for i in range (ROWS-1):
             wall1_row +=1
             wall1_col = -1
-            for j in range (8):
+            for j in range (COLS-1):
                 wall1_col+=1
                 if self.is_valid_horizontal_wall((wall1_row,wall1_col), state):
                     if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
@@ -307,37 +308,37 @@ class Environment:
     def Reset(self):
         self.state.reset()
     
-    def toTensor(self, device = torch.device('cpu')) -> tuple:
-        x1,y1 = self.get_player_row_col(1,self.state)
-        player1 = x1,y1,self.state.black_wall_counter
-        x2,y2 = self.get_player_row_col(-1,self.state)
-        player2 = x2,y2,self.state.white_wall_counter
-        player1 = np.array(player1)
-        player2 = np.array(player2)
-        board2 = self.state.horizontal_walls.reshape(-1)
-        board3 = self.state.vertical_walls.reshape(-1)
-        board_np = np.concatenate((player1,player2,board2,board3))
-        print(board_np)
-        board_np = torch.from_numpy(board_np)
-        board_tensor = torch.tensor(board_np, dtype=torch.float32, device=device)
-        action1 = self.validmovelistpiece(self.state)
-        action2 = self.valid_move_list_hor_wall()
-        action3 = self.valid_move_list_vert_wall()
-        actions_np = action1 + action2 + action3
-        actions_np = np.array(actions_np)
-        actions_tensor = torch.from_numpy(actions_np)
-        return board_tensor, actions_tensor
-    
+    #region def toTensor(self, device = torch.device('cpu')) -> tuple:
+    #     x1,y1 = self.get_player_row_col(1,self.state)
+    #     player1 = x1,y1,self.state.black_wall_counter
+    #     x2,y2 = self.get_player_row_col(-1,self.state)
+    #     player2 = x2,y2,self.state.white_wall_counter
+    #     player1 = np.array(player1)
+    #     player2 = np.array(player2)
+    #     board2 = self.state.horizontal_walls.reshape(-1)
+    #     board3 = self.state.vertical_walls.reshape(-1)
+    #     board_np = np.concatenate((player1,player2,board2,board3))
+    #     print(board_np)
+    #     board_np = torch.from_numpy(board_np)
+    #     board_tensor = torch.tensor(board_np, dtype=torch.float32, device=device)
+    #     action1 = self.validmovelistpiece(self.state)
+    #     action2 = self.valid_move_list_hor_wall()
+    #     action3 = self.valid_move_list_vert_wall()
+    #     actions_np = action1 + action2 + action3
+    #     actions_np = np.array(actions_np)
+    #     actions_tensor = torch.from_numpy(actions_np)
+    #     return board_tensor, actions_tensor
+    #endregion
 
     #####################################################################
 
     def get_legal_actions (self, state):
         action1 = self.validmovelistpiece(state)
-        action2 = self.valid_move_list_hor_wall()
-        action3 = self.valid_move_list_vert_wall()
+        action2 = self.valid_move_list_hor_wall(state)
+        action3 = self.valid_move_list_vert_wall(state)
         actions = action1 + action2 + action3
         if len(actions) == 0:
-            torch.save(state, f"Data/actions_{time.strftime('%Y%m%d_%H%M%S')}.pth")
+            self.save(state)
         return actions
 
     def next_state(self, state_tensor, action ,player = 1):
@@ -369,6 +370,10 @@ class Environment:
         for action in actions:
             next_state_lst.append(self.next_state(state_tensor, action, player))
         
+        if len(next_state_lst) == 0:
+            self.save(next_state_lst)
+            self.save(actions)
+
         next_states = torch.stack(next_state_lst, dim=0)
         return next_states
 
@@ -397,7 +402,7 @@ class Environment:
            state = self.state
        if -1 in state.board[0]:
            return -1
-       elif 1 in state.board[8]:
+       elif 1 in state.board[ROWS-1]:
            return 1
        else:
            return 0
@@ -423,3 +428,5 @@ class Environment:
         return res
 
         
+    def save (self, obj):
+        torch.save(obj, f"Data/error_{str(type(obj))}_{time.strftime('%Y%m%d_%H%M%S')}.pth")

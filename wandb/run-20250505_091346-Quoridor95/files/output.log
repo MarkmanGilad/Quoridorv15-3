@@ -1,0 +1,24 @@
+1
+Traceback (most recent call last):
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 137, in <module>
+    main (chkpt)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\trainer.py", line 73, in main
+    action, _ = player1.getAction(state=env.state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\DQNAgent.py", line 27, in getAction
+    actions = self.env.get_legal_actions(state)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 337, in get_legal_actions
+    action2 = self.valid_move_list_hor_wall(state)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 302, in valid_move_list_hor_wall
+    if self.is_valid_horizontal_wall((wall1_row,wall1_col), state):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 160, in is_valid_horizontal_wall
+    self.find_path(0,state1,self.get_player_row_col(-1,state1),visited,path)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 265, in find_path
+    self.move_piecexxx(new_pos,state)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Quoridorv15 3\environment.py", line 40, in move_piecexxx
+    state.board[to_row, to_col] = state.board[from_row, from_col]
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+IndexError: index 5 is out of bounds for axis 0 with size 5

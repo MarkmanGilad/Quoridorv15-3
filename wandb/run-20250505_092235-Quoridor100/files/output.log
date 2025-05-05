@@ -1,0 +1,11 @@
+sum score: -1
+100: epoch: 0 steps: 13 win: -1 loss: 0
+100: epoch: 1 steps: 20 win: -1 loss: 0
+100: epoch: 2 steps: 22 win: -1 loss: 0
+100: epoch: 3 steps: 20 win: -1 loss: 0
+100: epoch: 4 steps: 80 win: -1 loss: 0
+100: epoch: 5 steps: 33 win: 1 loss: 0
+100: epoch: 6 steps: 153 win: -1 loss: 0
+100: epoch: 7 steps: 42 win: -1 loss: 0
+100: epoch: 8 steps: 103 win: -1 loss: 0
+14

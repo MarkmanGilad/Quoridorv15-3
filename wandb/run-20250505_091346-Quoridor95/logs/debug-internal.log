@@ -1,0 +1,16 @@
+{"time":"2025-05-05T09:13:46.985178+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-05-05T09:13:46.985178+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Quoridorv15 3\\wandb\\run-20250505_091346-Quoridor95\\logs\\debug-core.log"}
+{"time":"2025-05-05T09:13:47.0941223+03:00","level":"INFO","msg":"created new stream","id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.0941223+03:00","level":"INFO","msg":"stream: started","id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.0941223+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.0941223+03:00","level":"INFO","msg":"sender: started","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.0941223+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.539858+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-05T09:13:47.5891534+03:00","level":"INFO","msg":"stream: closing","id":"Quoridor95"}
+{"time":"2025-05-05T09:13:47.5891534+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-05T09:13:47.5896703+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-05T09:13:49.1612104+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-05T09:13:49.5814315+03:00","level":"INFO","msg":"handler: closed","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:49.5814315+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:49.5814315+03:00","level":"INFO","msg":"sender: closed","stream_id":"Quoridor95"}
+{"time":"2025-05-05T09:13:49.5814315+03:00","level":"INFO","msg":"stream: closed","id":"Quoridor95"}
