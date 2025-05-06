@@ -17,7 +17,8 @@ def main (chkpt):
     C = 5
     learning_rate = 1e-4
     batch_size = 32
-    
+    max_steps = 75
+
     pygame.init()
     graphics = Graphics()
     env = Environment(State())
@@ -49,15 +50,14 @@ def main (chkpt):
     #endregion
     
     
-    
+    score = 0
     for epoch in range(epochs):
         env.Reset()
         graphics.reset()
         step = 0
-        score = 0
         end_of_game = False
         state = env.state.copy()
-        while not end_of_game and step < 200:
+        while not end_of_game and step < max_steps:
             step += 1
             print(step, end="\r")
 
@@ -70,7 +70,7 @@ def main (chkpt):
 
             ################# Sample Environement #################
             
-            action, _ = player1.getAction(state=env.state)
+            action, _ = player1.getAction(state=env.state, epoch=epoch)
             env.move(action)
             after_state = env.state.copy()
             reward = env.reward(state, after_state, player=player1.player)
@@ -84,9 +84,7 @@ def main (chkpt):
                 reward = env.reward(state, next_state, player=player1.player)
                 end_of_game = env.is_done()
                 buffer.push(state, action, reward, next_state, end_of_game)
-
-            state = next_state
-           
+            
             graphics.draw_vertical_walls(env.state,action)
             graphics.draw_horizontal_walls(env.state,action)
             graphics.draw_vertical_walls(env.state,after_action)
@@ -94,6 +92,8 @@ def main (chkpt):
             graphics.draw(env.state)
             pygame.display.update()
 
+            state = next_state
+           
             if len(buffer) < 500:
                 continue
             
@@ -116,13 +116,13 @@ def main (chkpt):
             "loos": loss,
             "steps": step
         })
-
-        if epoch % 10 == 0:
+        
+        print(f"{chkpt}: epoch: {epoch} steps: {step} win: {env.win()} loss: {loss}")
+       
+        if (epoch+1) % 10 == 0:
             print(f'sum score: {score}')
             wandb.log({"score": score})
             score =0
-
-        print(f"{chkpt}: epoch: {epoch} steps: {step} win: {env.win()} loss: {loss}")
 
     player1.save_param(path)
     

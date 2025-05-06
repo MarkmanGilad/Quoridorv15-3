@@ -48,9 +48,6 @@ class DQN (nn.Module):
     def loss (self, Q_value, rewards, Q_next_Values, dones ):
         rewards_tensor = torch.tensor(np.array(rewards), dtype=torch.float32).to(device=self.device)
         dones_tensor = torch.tensor(np.array(dones), dtype=torch.int64).to(device=self.device).unsqueeze(1)
-             
-        
-        
         Q_new =  rewards_tensor + gamma * Q_next_Values * (1- dones_tensor)
         return self.MSELoss(Q_value, Q_new)
     

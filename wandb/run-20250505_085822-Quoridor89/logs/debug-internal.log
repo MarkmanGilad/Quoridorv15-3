@@ -7,3 +7,11 @@
 {"time":"2025-05-05T08:58:22.9942026+03:00","level":"INFO","msg":"handler: started","stream_id":"Quoridor89"}
 {"time":"2025-05-05T08:58:23.4799199+03:00","level":"INFO","msg":"Starting system monitor"}
 {"time":"2025-05-05T08:58:33.4804952+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}
+{"time":"2025-05-05T12:57:24.3252056+03:00","level":"INFO","msg":"stream: closing","id":"Quoridor89"}
+{"time":"2025-05-05T12:57:24.3252056+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-05T12:57:24.3259879+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-05T12:57:25.5392519+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-05T12:57:25.9134934+03:00","level":"INFO","msg":"handler: closed","stream_id":"Quoridor89"}
+{"time":"2025-05-05T12:57:25.9134934+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Quoridor89"}
+{"time":"2025-05-05T12:57:25.9134934+03:00","level":"INFO","msg":"sender: closed","stream_id":"Quoridor89"}
+{"time":"2025-05-05T12:57:25.9134934+03:00","level":"INFO","msg":"stream: closed","id":"Quoridor89"}

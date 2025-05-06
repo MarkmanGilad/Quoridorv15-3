@@ -19,8 +19,8 @@ class Graphics:
         self.arr2 = []
 
     def calc_pos(self, row,col):
-        x = (SQUARE_SIZE * col + SQUARE_SIZE) - 50
-        y = (SQUARE_SIZE * row + SQUARE_SIZE) - 50
+        x = (SQUARE_SIZE * col + SQUARE_SIZE) - SQUARE_SIZE // 2
+        y = (SQUARE_SIZE * row + SQUARE_SIZE) - SQUARE_SIZE // 2
         return x,y
     
     def draw (self, state):
@@ -61,8 +61,8 @@ class Graphics:
                 wall_color = (255, 255, 255)
             else :
                 wall_color = (0,0,0)
-            start_point = (x + 50 , y -45)
-            end_point = (x + 50, y + 145)
+            start_point = (x + SQUARE_SIZE // 2 , y - SQUARE_SIZE // 2 + 5)
+            end_point = (x + SQUARE_SIZE // 2, y + SQUARE_SIZE // 2 * 3 - 5)
         
             self.arr.append((wall_color,start_point, end_point))
         for i in range(len(self.arr)):
@@ -76,8 +76,8 @@ class Graphics:
                 wall_color = (255, 255, 255)
             else :
                 wall_color = (0,0,0)
-            start_point = (x - 45, y + 50)
-            end_point = (x + 145, y + 50)
+            start_point = (x - SQUARE_SIZE // 2 + 5, y + SQUARE_SIZE // 2)
+            end_point = (x + SQUARE_SIZE // 2 * 3 - 5, y + SQUARE_SIZE // 2)
         
             self.arr2.append((wall_color,start_point, end_point))
         for i in range(len(self.arr2)):

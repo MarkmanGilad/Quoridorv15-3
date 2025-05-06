@@ -3,7 +3,7 @@ FPS = 60
 WALLS = 3
 WIDTH, HEIGHT = 900, 900
 ROWS, COLS = 5,5
-LINES = 4
+LINES = ROWS-1
 LINE_SIZE = 10
 SQUARE_SIZE = WIDTH//COLS
 LINE_WIDTH = 15
@@ -12,7 +12,7 @@ H_WIDTH, H_HEIGHT = 300, 100
 M_WIDTH, M_HEIGHT = 300, 300
 epsilon_start = 1
 epsilon_final = 0.01
-epsiln_decay = 10
+epsiln_decay = 100
 
 #RGB
 SPACE = (124,61,46)

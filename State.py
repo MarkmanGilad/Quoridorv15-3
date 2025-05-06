@@ -29,11 +29,11 @@ class State:
         player_pos = np.where(self.board == 1)
         player_row = int(player_pos[0][0])
         player_col = int(player_pos[1][0])
-        player1_encode = player_row + 1
+        player1_encode = 1
         opponent_pos = np.where(self.board == -1)
         opponent_row = int(opponent_pos[0][0])
         opponent_col = int(opponent_pos[1][0])
-        opponent_encode = -(ROWS - opponent_row)
+        opponent_encode = -1
 
         board = torch.zeros(self.board.shape, dtype=torch.float32)
         board[player_row, player_col] = player1_encode

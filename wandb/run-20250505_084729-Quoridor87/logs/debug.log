@@ -20,3 +20,4 @@ config: {'learning_rate': 0.0001, 'architecture': 'DQN(\n  (conv1): Conv2d(3, 16
 2025-05-05 08:47:30,440 INFO    MainThread:22792 [wandb_run.py:_redirect():2289] Wrapping output streams.
 2025-05-05 08:47:30,441 INFO    MainThread:22792 [wandb_run.py:_redirect():2314] Redirects installed.
 2025-05-05 08:47:30,442 INFO    MainThread:22792 [wandb_init.py:init():916] run started, returning control to user process
+2025-05-05 16:42:03,373 WARNING MsgRouterThr:22792 [router.py:message_loop():75] message_loop has been closed
