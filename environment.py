@@ -424,20 +424,23 @@ class Environment:
         while queue:
             pos = queue.popleft()
 
-            if pos[0] == row_target:
-                path = []
-                while pos in prev:
-                    path.append(pos)
-                    pos = prev[pos]
-                path.append(start_pos)
-                path.reverse()
-                return path  
-
             for next_pos in self.get_legal_moves(state, pos):
                 if next_pos not in visited:
                     visited.add(next_pos)
-                    queue.append(next_pos)
                     prev[next_pos] = pos
+
+                    if next_pos[0] == row_target:
+                        # Reconstruct path
+                        path = []
+                        current = next_pos
+                        while current in prev:
+                            path.append(current)
+                            current = prev[current]
+                        path.append(start_pos)
+                        path.reverse()
+                        return path
+
+                    queue.append(next_pos)
 
         return None  
 
