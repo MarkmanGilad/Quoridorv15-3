@@ -3,6 +3,7 @@ from State import State
 import torch
 import time
 from constants import *
+from collections import deque
 
 
 class Environment:
@@ -10,11 +11,11 @@ class Environment:
     def __init__(self, state:State ) -> None:
         self.state = state
         #    self.vertical_walls = state.vertical_walls
-        self.opponent_coe_reward = 0.5
-        self.step_reward = -0.5
-        self.forward_reward = 1
+        self.opponent_coe_reward = 0.1
+        self.step_reward = -0.2
+        self.forward_reward = 0.1
         self.done_reward = 10
-
+        
     def move_piece(self,pos):
         """
         Move a piece from one position to another.
@@ -40,49 +41,51 @@ class Environment:
         state.board[to_row, to_col] = state.board[from_row, from_col]
         state.board[from_row, from_col] = 0  
     
-    def is_valid_move(self,pos):
+    def is_valid_move(self,pos, state = None):
         """
         Check if the move from `from_pos` to `to_pos` is valid.
         """
-        from_row, from_col = self.get_player_row_col(self.state.current_player,self.state)
+        if state is None:
+            state = self.state
+        from_row, from_col = self.get_player_row_col(state.current_player,state)
         to_row, to_col = pos
         if  to_col > COLS-1 or to_row > ROWS-1 or to_row < 0 or to_col < 0:
             return False
-        if (from_row - to_row) == 2 and from_row > 1 and self.state.horizontal_walls[to_row,to_col] != 2 and self.state.horizontal_walls[from_row -1,to_col] != 2 and self.state.board[from_row - 1, from_col] == self.state.current_player * -1 and from_col == to_col:
+        if (from_row - to_row) == 2 and from_row > 1 and state.horizontal_walls[to_row,to_col] != 2 and state.horizontal_walls[from_row -1,to_col] != 2 and state.board[from_row - 1, from_col] == state.current_player * -1 and from_col == to_col:
             return True
-        if (to_row - from_row) == 2 and to_row > 1 and self.state.horizontal_walls[from_row + 1,to_col] != 2 and self.state.horizontal_walls[from_row ,to_col] != 2 and self.state.board[from_row + 1, from_col] == self.state.current_player * -1 and from_col == to_col:
+        if (to_row - from_row) == 2 and to_row > 1 and state.horizontal_walls[from_row + 1,to_col] != 2 and state.horizontal_walls[from_row ,to_col] != 2 and state.board[from_row + 1, from_col] == state.current_player * -1 and from_col == to_col:
             return True
-        if (to_col - from_col) == 2 and to_col > 1 and self.state.vertical_walls[from_row ,from_col + 1] != 2 and self.state.vertical_walls[from_row ,from_col] != 2 and self.state.board[from_row , from_col + 1] == self.state.current_player * -1 and from_row == to_row:
+        if (to_col - from_col) == 2 and to_col > 1 and state.vertical_walls[from_row ,from_col + 1] != 2 and state.vertical_walls[from_row ,from_col] != 2 and state.board[from_row , from_col + 1] == state.current_player * -1 and from_row == to_row:
             return True
-        if (from_col - to_col) == 2 and from_col > 1 and self.state.vertical_walls[from_row ,from_col - 1] != 2 and self.state.vertical_walls[from_row ,from_col -2 ] != 2 and self.state.board[from_row , from_col - 1] == self.state.current_player * -1 and from_row == to_row:
+        if (from_col - to_col) == 2 and from_col > 1 and state.vertical_walls[from_row ,from_col - 1] != 2 and state.vertical_walls[from_row ,from_col -2 ] != 2 and state.board[from_row , from_col - 1] == state.current_player * -1 and from_row == to_row:
             return True
-        if (from_row - to_row) == 1 and (from_col - to_col) == 1 and self.state.horizontal_walls[to_row-1,to_col+1] == 2 and self.state.vertical_walls[to_row,to_col] != 2 and self.state.board[from_row - 1, from_col] == self.state.current_player * -1:
+        if (from_row - to_row) == 1 and (from_col - to_col) == 1 and state.horizontal_walls[to_row-1,to_col+1] == 2 and state.vertical_walls[to_row,to_col] != 2 and state.board[from_row - 1, from_col] == state.current_player * -1:
             return True
-        if (from_row - to_row) == 1 and (from_col - to_col) == -1 and self.state.horizontal_walls[to_row-1,to_col-1] == 2 and self.state.vertical_walls[to_row,to_col-1] != 2 and self.state.board[from_row - 1, from_col] == self.state.current_player * -1:
+        if (from_row - to_row) == 1 and (from_col - to_col) == -1 and state.horizontal_walls[to_row-1,to_col-1] == 2 and state.vertical_walls[to_row,to_col-1] != 2 and state.board[from_row - 1, from_col] == state.current_player * -1:
             return True
-        if (from_row - to_row) == -1 and (from_col - to_col) == 1 and self.state.horizontal_walls[to_row,to_col+1] == 2 and self.state.vertical_walls[to_row,to_col] != 2 and self.state.board[from_row + 1, from_col] == self.state.current_player * -1:
+        if (from_row - to_row) == -1 and (from_col - to_col) == 1 and state.horizontal_walls[to_row,to_col+1] == 2 and state.vertical_walls[to_row,to_col] != 2 and state.board[from_row + 1, from_col] == state.current_player * -1:
             return True
-        if (from_row - to_row) == -1 and (from_col - to_col) == -1 and self.state.horizontal_walls[to_row,to_col-1] == 2 and self.state.vertical_walls[to_row,to_col-1] != 2 and self.state.board[from_row + 1, from_col] == self.state.current_player * -1:
+        if (from_row - to_row) == -1 and (from_col - to_col) == -1 and state.horizontal_walls[to_row,to_col-1] == 2 and state.vertical_walls[to_row,to_col-1] != 2 and state.board[from_row + 1, from_col] == state.current_player * -1:
             return True
         
-        if (from_row - to_row) == 1 and (from_col - to_col) == 1 and self.state.vertical_walls[to_row+1,to_col-1] == 2 and self.state.horizontal_walls[to_row,to_col] != 2 and self.state.board[from_row , from_col -1] == self.state.current_player * -1:
+        if (from_row - to_row) == 1 and (from_col - to_col) == 1 and state.vertical_walls[to_row+1,to_col-1] == 2 and state.horizontal_walls[to_row,to_col] != 2 and state.board[from_row , from_col -1] == state.current_player * -1:
             return True
-        if (from_row - to_row) == -1 and (from_col - to_col) == 1 and self.state.vertical_walls[to_row-1,to_col-1] == 2 and self.state.horizontal_walls[to_row-1,to_col] != 2 and self.state.board[from_row , from_col -1] == self.state.current_player * -1:
+        if (from_row - to_row) == -1 and (from_col - to_col) == 1 and state.vertical_walls[to_row-1,to_col-1] == 2 and state.horizontal_walls[to_row-1,to_col] != 2 and state.board[from_row , from_col -1] == state.current_player * -1:
             return True
-        if (from_row - to_row) == 1 and (from_col - to_col) == -1 and self.state.vertical_walls[to_row+1,to_col] == 2 and self.state.horizontal_walls[to_row,to_col] != 2 and self.state.board[from_row , from_col +1] == self.state.current_player * -1:
+        if (from_row - to_row) == 1 and (from_col - to_col) == -1 and state.vertical_walls[to_row+1,to_col] == 2 and state.horizontal_walls[to_row,to_col] != 2 and state.board[from_row , from_col +1] == state.current_player * -1:
             return True
-        if (from_row - to_row) == -1 and (from_col - to_col) == -1 and self.state.vertical_walls[to_row-1,to_col] == 2 and self.state.horizontal_walls[to_row-1,to_col] != 2 and self.state.board[from_row, from_col +1] == self.state.current_player * -1:
+        if (from_row - to_row) == -1 and (from_col - to_col) == -1 and state.vertical_walls[to_row-1,to_col] == 2 and state.horizontal_walls[to_row-1,to_col] != 2 and state.board[from_row, from_col +1] == state.current_player * -1:
             return True
 
-        if (from_col - to_col ) == 1 and  self.state.vertical_walls[to_row,to_col] == 2:
+        if (from_col - to_col ) == 1 and  state.vertical_walls[to_row,to_col] == 2:
             return False
-        if (to_col - from_col ) == 1 and  self.state.vertical_walls[from_row,from_col] == 2:
+        if (to_col - from_col ) == 1 and  state.vertical_walls[from_row,from_col] == 2:
             return False
-        if (to_row - from_row ) == 1 and self.state.horizontal_walls[from_row,from_col] == 2:
+        if (to_row - from_row ) == 1 and state.horizontal_walls[from_row,from_col] == 2:
             return False
-        if (from_row - to_row) == 1 and self.state.horizontal_walls[to_row,to_col] == 2:
+        if (from_row - to_row) == 1 and state.horizontal_walls[to_row,to_col] == 2:
             return False
-        if self.state.board[to_row, to_col]  == 0 and self.state.board[to_row, to_col]  is not self.state.board[from_row, from_col] and abs(from_row - to_row) < 2 and abs(from_col - to_col) < 2 and (from_row == to_row or from_col == to_col) and self.state.board[from_row, from_col] == self.state.current_player and  to_col <= COLS-1 and to_row <= ROWS-1:
+        if state.board[to_row, to_col]  == 0 and state.board[to_row, to_col]  is not state.board[from_row, from_col] and abs(from_row - to_row) < 2 and abs(from_col - to_col) < 2 and (from_row == to_row or from_col == to_col) and state.board[from_row, from_col] == state.current_player and  to_col <= COLS-1 and to_row <= ROWS-1:
             return True
         else:
             return False
@@ -222,7 +225,7 @@ class Environment:
             to_col = -1
             for j in range (COLS):
                 to_col += 1
-                if self.is_valid_move((to_row,to_col)):
+                if self.is_valid_move((to_row,to_col), state):
                     arr.append((0,to_row,to_col))
         return arr
        
@@ -281,8 +284,7 @@ class Environment:
             for j in range (COLS-1):
                 wall1_row +=1
                 if self.is_valid_vertical_wall((wall1_row,wall1_col), state):
-                    if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
-                        arr.append((2,wall1_row, wall1_col))
+                    arr.append((2,wall1_row, wall1_col))
    
         return arr
 
@@ -300,8 +302,7 @@ class Environment:
             for j in range (COLS-1):
                 wall1_col+=1
                 if self.is_valid_horizontal_wall((wall1_row,wall1_col), state):
-                    if self.relevant_wall(state=state, w_row=wall1_row, w_col=wall1_col, player=self.state.current_player):
-                        arr.append((1,wall1_row, wall1_col))
+                    arr.append((1,wall1_row, wall1_col))
    
         return arr    
 
@@ -377,7 +378,7 @@ class Environment:
         next_states = torch.stack(next_state_lst, dim=0)
         return next_states
 
-    def reward (self, state: State, next_state, player):
+    def reward (self, state: State, action, next_state: State, player):
         reward = self.step_reward
         player1_pos = np.where(state.board==1)
         player1_next_pos = np.where(next_state.board==1)
@@ -387,15 +388,17 @@ class Environment:
         player_advanced = (player1_next_pos[0]-player1_pos[0]) * self.forward_reward
         opponenet_advanced = (opponent_pos[0]- opponent_next_pos[0]) * self.forward_reward
         reward += player_advanced - self.opponent_coe_reward * opponenet_advanced
-
+        
         win = self.win(next_state)
         if  win == 1:
             reward += self.done_reward
         elif win == -1:
             reward -= self.done_reward
         
+        pos = tuple(map(int, player1_pos))
+        path = self.shortest_path(state, pos, len(state.board)-1)
+
         return reward
-        
     
     def win (self, state=None):
        if state is None:
@@ -409,24 +412,43 @@ class Environment:
        
     def is_done (self, state = None):
         return self.win(state) != 0
-    
-    def relevant_wall (self, state, w_row, w_col, player=1):  
-        ''' 
-        only for player 1
-        opponent is at the bottom and need to go up
-        relevant wall is a wall distance of 3 and betwwen the player and the target (not behind)
-        '''
-        
-        if player == -1 or player == 1:
-            return True
-        offset = 3
-        opponent_pos = np.where(state.board == -1)
-        row = int(opponent_pos[0][0])
-        col = int(opponent_pos[1][0])
 
-        res = 0 < (row - w_row) <= offset and abs(w_col-col) <= offset
-        return res
+    def shortest_path(self, state, start_pos, row_target):
+        queue = deque()
+        visited = set()
+        prev = {}
 
-        
+        queue.append(start_pos)
+        visited.add(start_pos)
+
+        while queue:
+            pos = queue.popleft()
+
+            if pos[0] == row_target:
+                path = []
+                while pos in prev:
+                    path.append(pos)
+                    pos = prev[pos]
+                path.append(start_pos)
+                path.reverse()
+                return path  
+
+            for next_pos in self.get_legal_moves(state, pos):
+                if next_pos not in visited:
+                    visited.add(next_pos)
+                    queue.append(next_pos)
+                    prev[next_pos] = pos
+
+        return None  
+
+    def get_legal_moves(self, state, pos):
+        state = state.copy()
+        row, col = self.get_player_row_col(state.current_player, state) 
+        state.board[row, col] = 0
+        state.board[pos] = state.current_player
+        moves = self.validmovelistpiece(state)
+        moves = [m[1:] for m in moves]
+        return moves
+
     def save (self, obj):
         torch.save(obj, f"Data/error_{str(type(obj))}_{time.strftime('%Y%m%d_%H%M%S')}.pth")

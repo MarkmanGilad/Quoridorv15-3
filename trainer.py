@@ -14,11 +14,10 @@ import wandb
 def main (chkpt):
     
     epochs = 1000000
-    C = 5
+    C = 10
     learning_rate = 1e-4
     batch_size = 32
-    max_steps = 75
-
+    
     pygame.init()
     graphics = Graphics()
     env = Environment(State())
@@ -73,7 +72,7 @@ def main (chkpt):
             action, _ = player1.getAction(state=env.state, epoch=epoch)
             env.move(action)
             after_state = env.state.copy()
-            reward = env.reward(state, after_state, player=player1.player)
+            reward = env.reward(state, action, after_state, player=player1.player)
             end_of_game = env.is_done()
             if end_of_game:
                 buffer.push(state, action, reward, after_state, True)
@@ -81,7 +80,7 @@ def main (chkpt):
                 after_action = player2.getAction(state=after_state)
                 env.move(after_action)
                 next_state = env.state.copy()
-                reward = env.reward(state, next_state, player=player1.player)
+                reward = env.reward(state, action, next_state, player=player1.player)
                 end_of_game = env.is_done()
                 buffer.push(state, action, reward, next_state, end_of_game)
             
