@@ -68,16 +68,18 @@ def main (chkpt):
                     exit()
 
             ################# Sample Environement #################
-            
+            # print(state.board)
             action, _ = player1.getAction(state=env.state, epoch=epoch)
+            # print(action)
             env.move(action)
             after_state = env.state.copy()
-            reward = env.reward(state, action, after_state, player=player1.player)
             end_of_game = env.is_done()
             if end_of_game:
+                reward = env.reward(state, action, after_state, player=player1.player)
                 buffer.push(state, action, reward, after_state, True)
             else:
                 after_action = player2.getAction(state=after_state)
+                # print(after_action)
                 env.move(after_action)
                 next_state = env.state.copy()
                 reward = env.reward(state, action, next_state, player=player1.player)
@@ -90,7 +92,7 @@ def main (chkpt):
             graphics.draw_horizontal_walls(env.state,after_action)
             graphics.draw(env.state)
             pygame.display.update()
-
+            
             state = next_state
            
             if len(buffer) < 500:

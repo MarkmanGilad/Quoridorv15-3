@@ -21,7 +21,7 @@ class DQN (nn.Module):
         
         self.conv1 = nn.Conv2d(in_channels=input_channels, out_channels=32, kernel_size=3, padding=1)  
         self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1) 
-        # self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1) 
+        self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=1) 
         self.MSELoss = nn.MSELoss()
 
         # Dynamically calculate flattened size
@@ -29,25 +29,25 @@ class DQN (nn.Module):
             dummy = torch.zeros(1, input_channels, row, col)
             dummy = self.conv1(dummy)
             dummy = self.conv2(dummy)
-            # dummy = self.conv3(dummy)
+            dummy = self.conv3(dummy)
             self.flattened_size = dummy.view(1, -1).shape[1]
 
-        self.fc1 = nn.Linear(self.flattened_size, 64)
-        self.output = nn.Linear(64, 1)      # value
+        self.fc1 = nn.Linear(self.flattened_size, 128)
+        self.output = nn.Linear(128, 1)      # value
         self.to(self.device)
     
     def forward(self, x: torch.Tensor):
         x = x.to(device=self.device)
         x = F.relu(self.conv1(x))         
         x = F.relu(self.conv2(x))         
-        # x = F.relu(self.conv3(x))       
+        x = F.relu(self.conv3(x))       
         x = x.view(x.size(0), -1)         
         x = F.relu(self.fc1(x)) 
         x = self.output(x)
         return x          
     
     def loss (self, Q_value, rewards, Q_next_Values, dones ):
-        rewards_tensor = torch.tensor(np.array(rewards), dtype=torch.float32).to(device=self.device)
+        rewards_tensor = torch.tensor(np.array(rewards), dtype=torch.float32).to(device=self.device).unsqueeze(1)
         dones_tensor = torch.tensor(np.array(dones), dtype=torch.int64).to(device=self.device).unsqueeze(1)
         Q_new =  rewards_tensor + gamma * Q_next_Values * (1- dones_tensor)
         return self.MSELoss(Q_value, Q_new)

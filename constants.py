@@ -10,10 +10,10 @@ LINE_WIDTH = 15
 BOARD_PADDING = 50
 H_WIDTH, H_HEIGHT = 300, 100
 M_WIDTH, M_HEIGHT = 300, 300
-epsilon_start = 0.5
-epsilon_final = 0.01
+epsilon_start = 1
+epsilon_final = 0.05
 epsiln_decay = 100
-max_steps = 75
+max_steps = 50
 
 #RGB
 SPACE = (124,61,46)

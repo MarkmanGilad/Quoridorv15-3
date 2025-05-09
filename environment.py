@@ -385,20 +385,28 @@ class Environment:
         opponent_pos = np.where(state.board==-1)
         opponent_next_pos = np.where(next_state.board==-1)
 
-        player_advanced = (player1_next_pos[0]-player1_pos[0]) * self.forward_reward
-        opponenet_advanced = (opponent_pos[0]- opponent_next_pos[0]) * self.forward_reward
-        reward += player_advanced - self.opponent_coe_reward * opponenet_advanced
+        # player_advanced = (player1_next_pos[0]-player1_pos[0]) * self.forward_reward
+        # opponenet_advanced = (opponent_pos[0]- opponent_next_pos[0]) * self.forward_reward
+        # reward += player_advanced - self.opponent_coe_reward * opponenet_advanced
         
         win = self.win(next_state)
         if  win == 1:
-            reward += self.done_reward
+            return self.done_reward
         elif win == -1:
-            reward -= self.done_reward
+            return -self.done_reward
         
-        pos = tuple(map(int, player1_pos))
-        path = self.shortest_path(state, pos, len(state.board)-1)
-
-        return reward
+        pos1 = tuple(map(int, player1_pos))
+        path1 = self.shortest_path(state, pos1, len(state.board)-1)
+        pos2 = tuple(map(int, player1_next_pos))
+        path2 = self.shortest_path(next_state, pos2, len(next_state.board)-1)
+        if path1 and path2:
+            return len(path1)-len(path2)
+        elif path1:
+            return -1
+        else:
+            return 0
+        
+            
     
     def win (self, state=None):
        if state is None:
